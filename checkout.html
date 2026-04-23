@@ -2,6 +2,8 @@
 <html>
 
 <head>
+
+    
 <title>Checkout</title>
 <link rel="stylesheet" href="style.css">
 </head>
@@ -57,15 +59,14 @@
 
 
 <script>
-
-    
 document.addEventListener("DOMContentLoaded", function(){
+
+fetch("https://urbanthread-backend.onrender.com");
 
 const cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 const container = document.getElementById("order-items");
 let total = 0;
-
 
 if(cart.length === 0){
     container.innerHTML = "<p>Your cart is empty</p>";
@@ -83,21 +84,8 @@ if(cart.length === 0){
 
 document.getElementById("order-total").innerText = "Total: £" + total;
 
-
 document.getElementById("checkout-form").addEventListener("submit", async function(e){
-
     e.preventDefault();
-
-    const name = document.getElementById("name").value.trim();
-    const address = document.getElementById("address").value.trim();
-    const city = document.getElementById("city").value.trim();
-    const postcode = document.getElementById("postcode").value.trim();
-
-    
-    if(!name || !address || !city || !postcode){
-        alert("Please fill in all fields");
-        return;
-    }
 
     if(cart.length === 0){
         alert("Your cart is empty");
@@ -105,44 +93,25 @@ document.getElementById("checkout-form").addEventListener("submit", async functi
     }
 
     try {
-
-        console.log("Sending request to backend...");
-
         const res = await fetch("https://urbanthread-backend.onrender.com/create-checkout-session", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify({
-                items: cart
-            })
+            body: JSON.stringify({ items: cart })
         });
-
-        if(!res.ok){
-            throw new Error("Backend response not OK");
-        }
 
         const data = await res.json();
 
-        console.log("Backend response:", data);
-
-        if(data && data.url){
+        if(data.url){
             window.location.href = data.url;
         } else {
-            throw new Error("No URL returned from backend");
+            alert("Stripe error");
         }
 
-    } catch (error) {
-
-        console.error("ERROR:", error);
-
-        alert("Payment failed or backend not reachable");
-
-       
-        localStorage.removeItem("cart");
-        window.location.href = "index.html";
+    } catch (err){
+        alert("Backend not reachable");
     }
-
 });
 
 });
