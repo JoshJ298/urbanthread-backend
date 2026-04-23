@@ -58,10 +58,7 @@
 
 <script>
 
-    fetch = ((origFetch) => (...args) => {
-  args[0] = "https://urbanthread-backend.onrender.com/create-checkout-session";
-  return origFetch(...args);
-})(fetch);
+    
 document.addEventListener("DOMContentLoaded", function(){
 
 const cart = JSON.parse(localStorage.getItem("cart")) || [];

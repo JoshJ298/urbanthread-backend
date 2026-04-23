@@ -126,8 +126,8 @@ def create_checkout_session():
         payment_method_types=["card"],
         line_items=line_items,
         mode="payment",
-        success_url="https://urbanthread.site/index.html",
-        cancel_url="https://urbanthread.site/checkout.html",
+        success_url="https://urbanthread-backend.onrender.com",
+        cancel_url="https://urbanthread-backend.onrender.com",
     )
 
     print(session.url)
@@ -144,5 +144,4 @@ if __name__ == "__main__":
 
 
 
-import os
-stripe.api_key = os.getenv("STRIPE_SECRET_KEY")
+
