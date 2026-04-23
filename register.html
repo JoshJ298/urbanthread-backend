@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Register</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="screen">
+
+<header>
+<h1>UrbanThread</h1>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="login.html">Login</a>
+<a href="cart.html">Cart</a>
+</nav>
+
+</header>
+
+<h2 class="title">Create Account</h2>
+
+<form id="register-form">
+
+<input type="text" id="username" placeholder="Username" required>
+<input type="email" id="email" placeholder="Email" required>
+<input type="password" id="password" placeholder="Password" required>
+
+<button type="submit">Register</button>
+
+</form>
+
+
+<script>
+
+document.getElementById("register-form").addEventListener("submit", function(e){
+
+e.preventDefault();
+
+let username = document.getElementById("username").value;
+let email = document.getElementById("email").value;
+let password = document.getElementById("password").value;
+
+/* Get existing users */
+let users = JSON.parse(localStorage.getItem("users")) || [];
+
+/* Check if user already exists */
+let exists = users.find(user => user.email === email);
+
+if(exists){
+    alert("User already exists!");
+    return;
+}
+
+/* Save new user */
+users.push({
+    username: username,
+    email: email,
+    password: password
+});
+
+localStorage.setItem("users", JSON.stringify(users));
+
+alert("Account created successfully!");
+
+/* Redirect to login */
+window.location.href = "login.html";
+
+});
+
+</script>
+
+
+</body>
+</html>

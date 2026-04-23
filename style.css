@@ -1,0 +1,471 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background-color: #f5f5f5;
+    font-style: italic;
+}
+
+
+header {
+    background-color: #38319d;
+    color: white;
+    padding: 20px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-style: italic;
+    font-size: 26px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 25px;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+nav a:hover {
+    opacity: 0.7;
+}
+
+
+.hero {
+    height: 90vh;
+    background: 
+        linear-gradient(to right, rgba(47, 46, 46, 0.6), rgba(150, 128, 128, 0.1)),
+        url("https://agentestudio.com/uploads/post/image/91/main_fashion-website-design-cover.jpg")
+        no-repeat center/cover;
+
+    display: flex;
+    align-items: center;
+    padding: 0 80px;
+}
+
+
+.hero-content {
+    max-width: 500px;
+}
+
+
+.hero h2 {
+    font-size: 52px;
+    color: rgb(254, 254, 254);
+    margin-bottom: 15px;
+}
+
+.hero p {
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 25px;
+}
+
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    padding: 12px 22px;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: 0.3s;
+}
+
+
+.btn-primary {
+    background: #38319d;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #6a64bc;
+}
+
+
+.btn-secondary {
+    background: transparent;
+    border: 2px solid white;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: white;
+    color: black;
+}
+
+
+.title {
+    text-align: center;
+    margin: 40px 0;
+}
+
+
+#search {
+    display: block;
+    margin: 20px auto;
+    padding: 12px;
+    width: 300px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+
+.product-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 25px;
+    padding: 30px;
+}
+
+
+.product-card {
+    background: white;
+    padding: 18px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+.product-card h3 {
+    margin-bottom: 10px;
+}
+
+
+button {
+    background: black;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin-top: 10px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+
+.auth-container {
+    width: 300px;
+    margin: 60px auto;
+    text-align: center;
+}
+
+.auth-container input,
+.auth-container button {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+}
+
+.auth-link a {
+    color: #b30000;
+    font-weight: bold;
+}
+
+
+.cart-product {
+    display: flex;
+    align-items: center;
+    background: white;
+    margin: 20px;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.cart-product img {
+    width: 120px;
+    margin-right: 20px;
+}
+
+
+.checkout-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 40px;
+}
+
+
+.product-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+    padding: 50px;
+    flex-wrap: wrap;
+}
+
+.product-image img {
+    max-width: 400px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.product-info {
+    max-width: 400px;
+}
+
+
+.filter-bar {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 20px 10px;
+    padding: 30px;
+}
+
+#categoryFilter {
+    padding: 10px;
+    border-radius: 10px;
+}
+
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 30px;
+    }
+
+    .hero h2 {
+        font-size: 32px;
+    }
+
+    .product-container {
+        grid-template-columns: 1fr;
+    }
+
+    .checkout-container {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/*  Men's page */
+.menbg {
+    background: 
+        linear-gradient(rgba(255,255,255,0.53), rgba(255, 255, 255, 0.384)),
+        url("https://images.squarespace-cdn.com/content/v1/5a6de17edc2b4ae0606ff8da/1675203751249-QVLKEORZXTLN37Y36EDQ/2-DSC07314.jpg?format=1500w")
+        no-repeat center/cover;
+
+    background-attachment: fixed;
+}
+
+
+.womenbg {
+    background: 
+    
+        linear-gradient(rgba(255,255,255,0.53), rgba(255, 255, 255, 0.534)),
+        url("https://images.squarespace-cdn.com/content/v1/65f8b3007299300a66b5821c/53790d9b-a1b9-4e6a-b003-9e43d17cb63e/DSCF2276.jpg")
+        no-repeat center/cover;
+
+    background-attachment: fixed;
+}
+
+.accbg {
+    background: 
+        linear-gradient(rgba(255,255,255,0.53), rgba(255, 255, 255, 0.514)),
+        url("https://media.cntraveller.com/photos/65775846a5d1e13cc73d6341/master/w_1600%2Cc_limit/SABYASACHI_MUMBAI__new_Jewellery_Shops_Watches_and_Jewellery_supplement_December23_Issue_Credit_Bjorn_Wallander_PR_Global.jpg")
+        no-repeat center/cover;
+
+    background-attachment: fixed;
+}
+
+
+.title {
+    text-align: center;
+    margin: 40px 0;
+    background: #9591918a;          
+    color: rgb(255, 255, 255);  
+    
+
+    font-family: 'Poppins', sans-serif;  
+    font-size: 45px;
+    font-weight: 490;
+    letter-spacing: 1px;
+    font-family: 'Times New Roman', Times, serif;
+    font-style: italic;
+}
+
+
+
+
+
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/*women's page */
+.womenbg .product-card {
+    background: #ffffff;
+    border: 1px solid #e6e6e6;
+    border-radius: 4px;
+    overflow: hidden;
+    text-align: left;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.womenbg .product-card:hover {
+    transform: translateY(-3px);
+    border-color: #ccc;
+}
+
+.womenbg .product-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+}
+
+.womenbg .product-card h3,
+.womenbg .product-card p,
+.womenbg .product-card button {
+    padding-left: 14px;
+    padding-right: 14px;
+}
+
+.womenbg .product-card h3 {
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 12px;
+    margin-bottom: 4px;
+}
+
+.womenbg .product-card button {
+    background: transparent;
+    border: none;
+    font-size: 13px;
+    color: #111;
+    padding-bottom: 14px;
+    cursor: pointer;
+    text-align: left;
+}
+
+
+
+/* accessories page */
+.accbg .product-card {
+    background: #ffffff;
+    border: 1px solid #e6e6e6;
+    border-radius: 4px;
+    overflow: hidden;
+    text-align: left;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.accbg .product-card:hover {
+    transform: translateY(-3px);
+    border-color: #ccc;
+}
+
+.accbg .product-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+}
+
+.accbg .product-card h3,
+.accbg .product-card p,
+.accbg .product-card button {
+    padding-left: 14px;
+    padding-right: 14px;
+}
+
+.accbg .product-card h3 {
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 12px;
+    margin-bottom: 4px;
+}
+
+.accbg .product-card button {
+    background: transparent;
+    border: none;
+    font-size: 13px;
+    color: #111;
+    padding-bottom: 14px;
+    cursor: pointer;
+    text-align: left;
+}
+
+
+
+
+
+
+.menbg .product-card {
+    background: #ffffff;
+    border: 1px solid #e6e6e6;
+    border-radius: 4px;
+    overflow: hidden;
+    text-align: left;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.menbg .product-card:hover {
+    transform: translateY(-3px);
+    border-color: #ccc;
+}
+
+.menbg .product-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    display: block;
+}
+
+/* spacing */
+.menbg .product-card h3,
+.menbg .product-card p,
+.menbg .product-card button {
+    padding-left: 14px;
+    padding-right: 14px;
+}
+
+/* title */
+.menbg .product-card h3 {
+    font-size: 15px;
+    font-weight: 500;
+    margin-top: 12px;
+    margin-bottom: 4px;
+}
+
+/* button */
+.menbg .product-card button {
+    background: transparent;
+    border: none;
+    font-size: 13px;
+    color: #111;
+    padding-bottom: 14px;
+    cursor: pointer;
+    text-align: left;
+}
+
+
+
+
+
+

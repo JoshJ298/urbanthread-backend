@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Your Cart</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="screen">
+
+<header>
+<h1>UrbanThread</h1>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="men.html">Men</a>
+<a href="women.html">Women</a>
+<a href="accessories.html">Accessories</a>
+<a href="cart.html">Cart</a>
+<a href="login.html">Login</a>
+<a href="register.html">Register</a>
+</nav>
+
+</header>
+
+<h2 class="title">Your Cart</h2>
+
+<div id="cart-container"></div>
+
+<div class="cart-summary">
+<h3 id="cart-total">Total: £0</h3>
+<a class="btn" href="checkout.html">Checkout</a>
+</div>
+
+<script>
+
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+let container = document.getElementById("cart-container");
+let total = 0;
+
+
+if(cart.length === 0){
+    container.innerHTML = "<p>Your cart is empty.</p>";
+}
+
+
+cart.forEach((item, index) => {
+
+    
+    let quantity = item.quantity ? item.quantity : 1;
+    let size = item.size ? item.size : "N/A";
+    let price = Number(item.price);
+
+    let subtotal = price * quantity;
+
+    let div = document.createElement("div");
+    div.className = "cart-product";
+
+    div.innerHTML = `
+        <img src="${item.img}">
+
+        <div class="cart-info">
+            <h3>${item.name}</h3>
+
+            <p>Size: ${size}</p>
+
+            <p>Price: £${price}</p>
+
+            <p>Quantity: ${quantity}</p>
+
+            <p>Subtotal: £${subtotal}</p>
+
+            <div class="cart-buttons">
+                <button onclick="increaseQty(${index})">+</button>
+                <button onclick="decreaseQty(${index})">-</button>
+                <button onclick="removeItem(${index})">Remove</button>
+            </div>
+        </div>
+    `;
+
+    container.appendChild(div);
+
+    total += subtotal;
+
+    
+    cart[index].quantity = quantity;
+    cart[index].size = size;
+});
+
+
+document.getElementById("cart-total").innerText = "Total: £" + total;
+
+
+localStorage.setItem("cart", JSON.stringify(cart));
+
+
+function removeItem(index){
+    cart.splice(index, 1);
+    localStorage.setItem("cart", JSON.stringify(cart));
+    location.reload();
+}
+
+function increaseQty(index){
+    cart[index].quantity += 1;
+    localStorage.setItem("cart", JSON.stringify(cart));
+    location.reload();
+}
+
+
+function decreaseQty(index){
+    if(cart[index].quantity > 1){
+        cart[index].quantity -= 1;
+    } else {
+        cart.splice(index, 1);
+    }
+    localStorage.setItem("cart", JSON.stringify(cart));
+    location.reload();
+}
+
+</script>
+
+
+
+</body>
+</html>

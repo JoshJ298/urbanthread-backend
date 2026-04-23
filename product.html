@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Product Details</title>
+<link rel="stylesheet" href="style.css">
+
+<style>
+.product-page {
+    display: flex;
+    gap: 50px;
+    padding: 40px;
+    align-items: center;
+}
+
+
+.product-image img {
+    width: 380px;
+    border-radius: 8px;
+}
+
+
+.product-info {
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+#product-price {
+    font-size: 20px;
+    font-weight: 600;
+}
+
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.stars {
+    color: #f5a623;
+    font-size: 16px;
+}
+
+.reviews {
+    font-size: 13px;
+    color: #777;
+}
+
+
+.meta {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 10px;
+}
+
+
+#product-desc {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.5;
+}
+
+
+#size {
+    margin-top: 5px;
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    width: 140px;
+}
+
+
+.add-to-cart {
+    margin-top: 10px;
+    padding: 12px;
+    background: #111;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.add-to-cart:hover {
+    background: #333;
+}
+
+.secondary-btn {
+    padding: 12px;
+    background: #bdb9b9;       
+    color: white;           
+    border: none;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.secondary-btn:hover {
+    background: #333;       
+}
+
+
+.lang-btn {
+    margin-left: 10px;
+    padding: 5px 10px;
+    background: black;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+}
+</style>
+
+</head>
+
+<body class="screen">
+
+<header>
+<h1>UrbanThread</h1>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="men.html">Men</a>
+<a href="women.html">Women</a>
+<a href="accessories.html">Accessories</a>
+<a href="cart.html" id="nav-cart">Cart</a>
+<a href="login.html" id="nav-login">Login</a>
+<a href="register.html" id="nav-register">Register</a>
+
+<button class="lang-btn" onclick="setLanguage('en')">EN</button>
+<button class="lang-btn" onclick="setLanguage('es')">ES</button>
+</nav>
+</header>
+
+<h2 class="title">Product Details</h2>
+
+<div class="product-page">
+
+
+<div class="product-image">
+<img id="product-img" alt="Product Image">
+</div>
+
+
+<div class="product-info">
+
+<h2 id="product-name"></h2>
+
+<p id="product-price"></p>
+
+
+<div class="rating">
+    <span class="stars">★★★★★</span>
+    <span class="reviews">(124 reviews)</span>
+</div>
+
+<p class="meta">Free delivery over £50 • 30-day returns</p>
+
+<p id="product-desc"></p>
+
+
+<label for="size">Select Size:</label>
+<select id="size">
+<option>S</option>
+<option>M</option>
+<option>L</option>
+<option>XL</option>
+</select>
+
+
+<button class="add-to-cart" onclick="addToCart()" data-translate="add">Add to Cart</button>
+<button class="secondary-btn" onclick="goBack()" data-translate="back">Back to Shop</button>
+
+</div>
+
+</div>
+
+<script>
+
+
+const params = new URLSearchParams(window.location.search);
+
+const name = params.get("name");
+const price = params.get("price");
+const img = params.get("img");
+let desc = params.get("desc");
+const category = params.get("category");
+
+
+const defaultDescriptions = {
+    "Graphic Hoodie": "Comfortable streetwear hoodie for everyday use.",
+    "Denim Jacket": "Classic denim jacket for a timeless look.",
+    "Cargo Pants": "Functional cargo pants with multiple pockets.",
+    "Backpack": "Stylish everyday backpack for school and travel.",
+    "Cap": "Simple and clean cap for daily wear.",
+    "Watch": "Modern watch with a sleek design."
+};
+
+
+if (!desc || desc === "null") {
+    desc = defaultDescriptions[name] || "High quality fashion item designed for everyday comfort.";
+}
+
+
+document.getElementById("product-name").innerText = name;
+document.getElementById("product-price").innerText = "£" + price;
+document.getElementById("product-img").src = img;
+document.getElementById("product-desc").innerText = desc;
+
+
+function addToCart(){
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+    let selectedSize = document.getElementById("size").value;
+
+    let existing = cart.find(item =>
+        item.name === name && item.size === selectedSize
+    );
+
+    if(existing){
+        existing.quantity++;
+    } else {
+        cart.push({
+            name: name,
+            price: Number(price),
+            img: img,
+            size: selectedSize,
+            quantity: 1
+        });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+
+    alert(name + " added to cart!");
+}
+
+
+function goBack(){
+    if(category === "women"){
+        window.location.href = "women.html";
+    } else if(category === "accessories"){
+        window.location.href = "accessories.html";
+    } else {
+        window.location.href = "men.html";
+    }
+}
+
+</script>
+
+
+<script>
+const translations = {
+    en: {
+        home: "Home",
+        men: "Men",
+        women: "Women",
+        accessories: "Accessories",
+        cart: "Cart",
+        login: "Login",
+        register: "Register",
+        add: "Add to Cart",
+        back: "Back to Shop"
+    },
+    es: {
+        home: "Inicio",
+        men: "Hombre",
+        women: "Mujer",
+        accessories: "Accesorios",
+        cart: "Carrito",
+        login: "Iniciar sesión",
+        register: "Registrarse",
+        add: "Añadir al carrito",
+        back: "Volver"
+    }
+};
+
+function setLanguage(lang) {
+    localStorage.setItem("lang", lang);
+    applyLanguage(lang);
+}
+
+function applyLanguage(lang) {
+    const t = translations[lang];
+
+    const navLinks = document.querySelectorAll("nav a");
+    if (navLinks[0]) navLinks[0].textContent = t.home;
+    if (navLinks[1]) navLinks[1].textContent = t.men;
+    if (navLinks[2]) navLinks[2].textContent = t.women;
+    if (navLinks[3]) navLinks[3].textContent = t.accessories;
+
+    document.getElementById("nav-cart").textContent = t.cart;
+    document.getElementById("nav-login").textContent = t.login;
+    document.getElementById("nav-register").textContent = t.register;
+
+    document.querySelectorAll("[data-translate]").forEach(el => {
+        const key = el.getAttribute("data-translate");
+        if (t[key]) el.textContent = t[key];
+    });
+}
+
+const savedLang = localStorage.getItem("lang") || "en";
+applyLanguage(savedLang);
+</script>
+
+</body>
+</html>

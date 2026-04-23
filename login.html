@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Login</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body class="screen">
+
+<header>
+<h1>UrbanThread</h1>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="cart.html">Cart</a>
+<a href="login.html">Login</a>
+<a href="register.html">Register</a>
+</nav>
+
+</header>
+
+<h2 class="title">Login</h2>
+
+<div class="auth-container">
+
+<form id="login-form">
+
+<input type="email" id="email" placeholder="Email" required>
+
+<input type="password" id="password" placeholder="Password" required>
+
+<button type="submit">Login</button>
+
+</form>
+
+<p class="auth-link">
+Don’t have an account? <a href="register.html">Register</a>
+</p>
+
+</div>
+
+
+<script>
+
+document.getElementById("login-form").addEventListener("submit", function(e){
+
+e.preventDefault();
+
+let email = document.getElementById("email").value;
+let password = document.getElementById("password").value;
+
+
+let users = JSON.parse(localStorage.getItem("users")) || [];
+
+
+let user = users.find(u => u.email === email && u.password === password);
+
+if(user){
+
+    alert("Login successful!");
+
+    
+    localStorage.setItem("loggedInUser", JSON.stringify(user));
+
+    
+    window.location.href = "index.html";
+
+} else {
+    alert("Invalid email or password");
+}
+
+});
+
+</script>
+
+
+</body>
+</html>

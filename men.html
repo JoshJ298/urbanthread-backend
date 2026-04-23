@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Men</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<style>
+.lang-btn {
+    margin-left: 10px;
+    padding: 6px 12px;
+    background: #5a51d1;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.lang-btn:hover {
+    background: lightblue;
+}
+
+.filter-bar {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+#categoryFilter, #search {
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+
+.product-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+    padding: 20px 80px;
+}
+
+.product-card {
+    background: white;
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    transition: 0.2s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+}
+
+
+.product-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.product-card button {
+    background: rgb(37, 37, 107);
+    color: white;
+    border: none;
+    padding: 8px 14px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.product-card button:hover {
+    background: light;
+}
+</style>
+
+</head>
+
+<script>
+
+
+document.querySelectorAll(".product-card").forEach((card, index) => {
+
+    
+    const productIds = [1,5,13,12,1,3,12,7]; 
+    
+
+    const button = card.querySelector("button");
+
+    if(button){
+        button.addEventListener("click", (e) => {
+            e.preventDefault(); 
+
+            const id = productIds[index];
+
+            fetch("http://127.0.0.1:5000/cart/add", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    product_id: id,
+                    quantity: 1
+                })
+            })
+            .then(() => alert("Added to cart"));
+        });
+    }
+
+});
+</script>
+
+
+
+
+
+
+
+
+
+<body class="menbg">
+
+<header>
+<h1>UrbanThread</h1>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="men.html">Men</a>
+<a href="women.html">Women</a>
+<a href="accessories.html">Accessories</a>
+<a href="cart.html" id="nav-cart">Cart</a>
+<a href="login.html" id="nav-login">Login</a>
+<a href="register.html" id="nav-register">Register</a>
+
+<button class="lang-btn" onclick="setLanguage('en')">EN</button>
+<button class="lang-btn" onclick="setLanguage('es')">ES</button>
+</nav>
+</header>
+
+<h2 class="title">Men's Collection</h2>
+
+<div class="filter-bar">
+<input type="text" id="search" placeholder="Search products...">
+
+<select id="categoryFilter">
+<option value="all">All</option>
+<option value="hoodie">Hoodies</option>
+<option value="tshirt">T-Shirts</option>
+<option value="pants">Pants</option>
+<option value="jacket">Jackets</option>
+</select>
+</div>
+
+<div class="product-container">
+
+<div class="product-card" data-category="hoodie">
+<img src="hoodie.jpg" alt="Graphic Hoodie">
+<h3 data-key="hoodie"></h3>
+<a href="product.html?name=Denim Jacket&price=55&img=https://mediahub.boohooman.com/cmm25017_ecru_xl?qlt=85&w=480&h=720&fit=ctn">
+<button data-key="view"></button>
+</a>
+</div>
+
+<div class="product-card" data-category="jacket">
+<img src="https://www.repeatvintagewholesale.com/cdn/shop/files/VINTAGE-DENIM-JACKETS-Thrift-Vintage-Wholesale-134199387_2048x.jpg?v=1727711936" alt="Denim Jacket">
+<h3 data-key="jacket"></h3>
+<a href="product.html?name=Denim Jacket&price=55&img=https://elvdenim.com/cdn/shop/files/mens-classic-denim-jacket-mid-blue-592144.jpg?v=1722884672&width=3840">
+<button data-key="view"></button>
+</a>
+</div>
+
+<div class="product-card" data-category="pants">
+<img src="https://images.stockcake.com/public/d/1/0/d104b706-3899-49ef-b217-17f95932e441_large/folded-green-pants-stockcake.jpg" alt="Cargo Pants">
+<h3 data-key="cargo"></h3>
+<a href="product.html?name=Cargo Pants&price=48&img=https://xcdn.next.co.uk/common/items/default/default/itemimages/3_4Ratio/product/lge/683667s.jpg">
+<button data-key="view"></button>
+</a>
+</div>
+
+<div class="product-card" data-category="tshirt">
+<img src="shirt.jpg" alt="Graphic T-Shirt">
+<h3 data-key="tshirt"></h3>
+<a href="product.html?name=Graphic T-Shirt&price=25&img=https://images.riverisland.com/image/upload/t_plp_portraitSmall/f_auto/q_auto/373617_main?_a=BATAV5fk0">
+<button data-key="view"></button>
+</a>
+</div>
+
+<div class="product-card" data-category="hoodie">
+<img src="https://showcasenyc.shop/cdn/shop/products/IMG_7213.png?v=1676583149" alt="Basic Hoodie">
+<h3 data-key="basic"></h3>
+<a href="product.html?name=Basic Hoodie&price=30&img=https://iciw.centracdn.net/client/dynamic/images/12858_ed39ceeecb-13497-001-1-1350x0.jpg">
+<button data-key="view"></button>
+</a>
+</div>
+
+<div class="product-card" data-category="pants">
+<img src="https://cdn.shopify.com/s/files/1/0023/1342/0889/files/classic-jeans-regular-lightblue-1.jpg?v=1770811260" alt="Jeans">
+<h3 data-key="jeans"></h3>
+<a href="product.html?name=Regular Jeans&price=35&img=https://ca.mavi.com/cdn/shop/files/3PsnQE4NXwkNuCIuUJKYuOGt9a5oVuMQqUI4cFZC.jpg?v=1770653586&width=1946">
+<button data-key="view"></button>
+</a>
+</div>
+
+<div class="product-card" data-category="tshirt">
+<img src="https://image.hm.com/assets/hm/9c/88/9c88ddb1d62f7ea8ef5a5ec5ba9c03e286a27d0b.jpg" alt="Plain T-Shirt">
+<h3 data-key="plain"></h3>
+<a href="product.html?name=Plain T-Shirt&price=15&img=https://imagescdn.simons.ca/images/8719-213812-1-A1_3/solid-organic-cotton-slim-fit-t-shirt-b-muscle-fit-b.jpg?__=86">
+<button data-key="view"></button>
+</a>
+</div>
+
+<div class="product-card" data-category="pants">
+<img src="https://americantall.com/cdn/shop/products/American-Tall-Men-Fleece-Jogger-CharcoalMix-front.jpg?v=1762198043" alt="Joggers">
+<h3 data-key="joggers"></h3>
+<a href="product.html?name=Joggers&price=28&img=https://cdn.shopify.com/s/files/1/0565/8050/5775/files/Joggers_pants_480x480.webp?v=1711788214">
+<button data-key="view"></button>
+</a>
+</div>
+
+</div>
+
+
+<script>
+const searchInput = document.getElementById("search");
+const categoryFilter = document.getElementById("categoryFilter");
+const productCards = document.querySelectorAll(".product-card");
+
+function filterProducts() {
+    const query = searchInput.value.toLowerCase();
+    const selectedCategory = categoryFilter.value;
+
+    productCards.forEach(card => {
+        const title = card.querySelector("h3").textContent.toLowerCase();
+        const category = card.getAttribute("data-category");
+
+        const matchSearch = title.includes(query);
+        const matchCategory = selectedCategory === "all" || category === selectedCategory;
+
+        card.style.display = (matchSearch && matchCategory) ? "" : "none";
+    });
+}
+
+searchInput.addEventListener("input", filterProducts);
+categoryFilter.addEventListener("change", filterProducts);
+</script>
+
+
+<script>
+const translations = {
+    en: {
+        title: "Men's Collection",
+        search: "Search products...",
+        cart: "Cart",
+        login: "Login",
+        register: "Register",
+        view: "View",
+
+        hoodie: "Graphic Hoodie",
+        jacket: "Denim Jacket",
+        cargo: "Cargo Pants",
+        tshirt: "Graphic T-Shirt",
+        basic: "Basic Hoodie",
+        jeans: "Regular Jeans",
+        plain: "Plain T-Shirt",
+        joggers: "Joggers"
+    },
+    es: {
+        title: "Colección de Hombre",
+        search: "Buscar productos...",
+        cart: "Carrito",
+        login: "Iniciar sesión",
+        register: "Registrarse",
+        view: "Ver",
+
+        hoodie: "Sudadera Gráfica",
+        jacket: "Chaqueta Vaquera",
+        cargo: "Pantalones Cargo",
+        tshirt: "Camiseta Gráfica",
+        basic: "Sudadera Básica",
+        jeans: "Vaqueros",
+        plain: "Camiseta Básica",
+        joggers: "Pantalones Deportivos"
+    }
+};
+
+function setLanguage(lang) {
+    localStorage.setItem("lang", lang);
+    applyLanguage(lang);
+}
+
+function applyLanguage(lang) {
+    const t = translations[lang];
+
+    document.querySelector(".title").textContent = t.title;
+    document.getElementById("search").placeholder = t.search;
+
+    document.getElementById("nav-cart").textContent = t.cart;
+    document.getElementById("nav-login").textContent = t.login;
+    document.getElementById("nav-register").textContent = t.register;
+
+    document.querySelectorAll("[data-key]").forEach(el => {
+        const key = el.getAttribute("data-key");
+        if (t[key]) el.textContent = t[key];
+    });
+}
+
+const savedLang = localStorage.getItem("lang") || "en";
+applyLanguage(savedLang);
+</script>
+
+</body>
+</html>
