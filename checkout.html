@@ -57,6 +57,11 @@
 
 
 <script>
+
+    fetch = ((origFetch) => (...args) => {
+  args[0] = "https://urbanthread-backend.onrender.com/create-checkout-session";
+  return origFetch(...args);
+})(fetch);
 document.addEventListener("DOMContentLoaded", function(){
 
 const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -106,7 +111,7 @@ document.getElementById("checkout-form").addEventListener("submit", async functi
 
         console.log("Sending request to backend...");
 
-        const res = await fetch("http://localhost:5000/create-checkout-session", {
+        const res = await fetch("https://urbanthread-backend.onrender.com/create-checkout-session", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

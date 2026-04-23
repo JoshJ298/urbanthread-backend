@@ -126,8 +126,8 @@ def create_checkout_session():
         payment_method_types=["card"],
         line_items=line_items,
         mode="payment",
-        success_url="http://127.0.0.1:5501/index.html",
-        cancel_url="http://127.0.0.1:5500/checkout.html"
+        success_url="https://urbanthread.site/index.html",
+        cancel_url="https://urbanthread.site/checkout.html",
     )
 
     print(session.url)
